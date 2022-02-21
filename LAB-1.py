@@ -38,10 +38,9 @@ class Solution:
     def most_ordered_item(self)->None:
         item_quants = self.chipo.groupby(['item_name']).agg({'quantity':'sum','order_id':'sum'})
         first_coloum = item_quants.sort_values('quantity',ascending = False)[:1]
-        print(first_coloum.iloc[0]['item_name'])
         quantity= first_coloum.iloc[0]['quantity']
         order_id = first_coloum.iloc[0]['order_id']
-        item_name = 'Chicken Bowl'
+        item_name = self.chipo['item_name'].mode()[0]
         return item_name, order_id,quantity  
     
     def total_item_orders(self) -> int:
